@@ -58,9 +58,6 @@ const userSchema = new Schema<UserDocument>({
     default: false
   },
   profile: { type: Schema.Types.ObjectId, ref: 'Profile' },
-  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
-  workExperiences: [{ type: Schema.Types.ObjectId, ref: 'WorkExperience' }],
-  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
   tokens: [{
     token:{
       type: String,
