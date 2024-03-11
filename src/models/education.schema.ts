@@ -10,11 +10,11 @@ interface EducationDocument extends Document {
 
 // Education Schema
 const educationSchema = new Schema<EducationDocument>({
-  school: String,
-  course: String,
-  startDate: Date,
+  school: {type: String, require: true, trim: true},
+  course: {type: String, require: true, trim: true, max: 50},
+  startDate: {type: Date, require: true},
   endDate: Date,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' }
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
-export const ProfileSchema = model<EducationDocument>('education', educationSchema);
+export const EducationSchema = model<EducationDocument>('Education', educationSchema);

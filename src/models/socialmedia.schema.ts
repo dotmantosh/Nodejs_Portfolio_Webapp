@@ -20,4 +20,4 @@ const socialMediaSchema = new Schema<SocialMediaDocument>({
   userId: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-export const ProfileSchema = model<SocialMediaDocument>('SocialMedia', socialMediaSchema);
+export const SocialMediaSchema = model<SocialMediaDocument>('SocialMedia', socialMediaSchema);
