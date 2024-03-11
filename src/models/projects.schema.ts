@@ -6,12 +6,12 @@ export enum ProjectTypeEnum {
   contract = "contact",
   employee = "employee"
 }
-interface ProjectDocument extends Document {
+export interface ProjectDocument extends Document {
   name: string;
   description: string;
   type: ProjectTypeEnum;
   userId: Types.ObjectId;
-  stacks: Types.ObjectId[];
+  skills: Types.ObjectId[];
   workExperienceId?: Types.ObjectId;
 }
 
@@ -21,7 +21,6 @@ const projectsSchema = new Schema<ProjectDocument>({
   description: String,
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   type: {type: String, enum: ["personal_project", "contract", "employee"]},
-  stacks: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
   workExperienceId: { type: Schema.Types.ObjectId, ref: 'WorkExperience' }
 });
 
@@ -33,11 +32,11 @@ projectsSchema.path('workExperienceId').validate(function(this: ProjectDocument,
 }, 'workExperience is only allowed when type is employee');
 
 
-// projectsSchema.virtual('populatedSkills', {
-//   ref: 'Skill', // Reference to Skill model
-//   localField: 'skills', // Field in the WorkExperience schema
-//   foreignField: '_id', // Field in the Skill schema
-//   justOne: false // Set to false if the 'skills' field is an array
-// });
+projectsSchema.virtual('populatedSkills', {
+  ref: 'Skill', // Reference to Skill model
+  localField: '_id', // Field in the project schema
+  foreignField: 'projectId', // Field in the Skill schema
+  justOne: false // Set to false if the 'skills' field is an array
+});
 
 export const ProjectSchema = model<ProjectDocument>('Project', projectsSchema);

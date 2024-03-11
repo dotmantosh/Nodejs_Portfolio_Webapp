@@ -1,17 +1,22 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
 // Interface for Skill document
-interface SkillDocument extends Document {
+export interface SkillDocument extends Document {
   name: string;
   imageUrl: string;
   userId: Types.ObjectId
+  projectId: Types.ObjectId
+  workExperienceId: Types.ObjectId
 }
 
 // Skill Schema
 const skillSchema = new Schema<SkillDocument>({
   name: String,
   imageUrl: String,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' }
+  userId: { type: Schema.Types.ObjectId, ref: 'User' },
+  projectId: {type: Schema.Types.ObjectId, ref: 'Project'},
+  workExperienceId: { type: Schema.Types.ObjectId, ref: 'WorkExperience' },
+  
 });
 
 // Define a pre-save hook to enforce the maximum limit
