@@ -1,6 +1,6 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
-interface EducationDocument extends Document {
+export interface EducationDocument extends Document {
   school: string;
   course: string;
   startDate: Date,
