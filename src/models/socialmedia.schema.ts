@@ -1,6 +1,6 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
-interface SocialMediaDocument extends Document {
+export interface SocialMediaDocument extends Document {
   github: string;
   youtube: string;
   linkedIn: string;
