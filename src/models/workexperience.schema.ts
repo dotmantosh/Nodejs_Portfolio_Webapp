@@ -1,12 +1,11 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
 // Interface for WorkExperience document
-interface WorkExperienceDocument extends Document {
+export interface WorkExperienceDocument extends Document {
   title: string;
   startDate: Date;
   endDate: Date;
   userId: Types.ObjectId;
-  stacks: Types.ObjectId[];
 }
 
 // WorkExperience Schema
@@ -15,7 +14,6 @@ const workExperienceSchema = new Schema<WorkExperienceDocument>({
   startDate: Date,
   endDate: Date,
   userId: { type: Schema.Types.ObjectId, ref: 'User' },
-  stacks: [{ type: Schema.Types.ObjectId, ref: 'Skill' }]
 });
 
 // Define a pre-save hook to enforce the maximum limit
@@ -29,11 +27,18 @@ workExperienceSchema.pre('save', async function(next) {
   next();
 });
 
-// workExperienceSchema.virtual('populatedSkills', {
-//   ref: 'Skill', // Reference to Skill model
-//   localField: 'skills', // Field in the WorkExperience schema
-//   foreignField: '_id', // Field in the Skill schema
-//   justOne: false // Set to false if the 'skills' field is an array
-// });
+workExperienceSchema.virtual('populatedSkills', {
+  ref: 'Skill', // Reference to Skill model
+  localField: '_id', // Field in the WorkExperience schema
+  foreignField: 'workExperienceId', // Field in the Skill schema
+  justOne: false // Set to false if the 'skills' field is an array
+});
+
+workExperienceSchema.virtual('populatedProjects', {
+  ref: 'Project', // Reference to Project model
+  localField: '_id', // Field in the WorkExperience schema
+  foreignField: 'workExperienceId', // Field in the Project schema
+  justOne: false // Set to false if the 'projects' field is an array
+});
 
 export const WorkExperienceSchema = model<WorkExperienceDocument>('WorkExperience', workExperienceSchema);
