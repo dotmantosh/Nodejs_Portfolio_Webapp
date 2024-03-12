@@ -12,7 +12,7 @@ class ProfileService {
 
   static async findAll(): Promise<ProfileDocument[]> {
     try {
-      return await ProfileSchema.find();
+      return await ProfileSchema.find({});
     } catch (error) {
       throw new Error(`Error while finding all profiles: ${error}`);
     }
