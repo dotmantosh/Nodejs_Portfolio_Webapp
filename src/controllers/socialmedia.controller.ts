@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import SocialMediaService from "../services/socialmedia.service";
+import { UserDocument } from "../models/user.schema";
 // import { SocialMediaDocument } from "../models/socialMedia.schema";
 
+// Extend the existing Request interface to include the user property
+interface AuthenticatedRequest extends Request {
+    user?: UserDocument; // Assuming UserDocument is the type of your user model
+}
+
 class SocialMediaController {
-    static async createSocialMedia(req: Request, res: Response, next: NextFunction) {
+    static async createSocialMedia(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const socialMedia = await SocialMediaService.createSocialMedia(req.body);
             res.json(socialMedia);
@@ -12,7 +18,7 @@ class SocialMediaController {
         }
     }
 
-    static async fetchUserSocialMedia(req: Request, res: Response, next: NextFunction) {
+    static async fetchUserSocialMedia(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             // Assuming the authenticated user object is stored in req.user
             const user = req.user;
@@ -29,7 +35,7 @@ class SocialMediaController {
         }
     }
 
-    static async updateSocialMedia(req: Request, res: Response, next: NextFunction) {
+    static async updateSocialMedia(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const updatedSocialMedia = await SocialMediaService.updateSocialMedia(req.params.id, req.body);
             if (!updatedSocialMedia) {
@@ -41,7 +47,7 @@ class SocialMediaController {
         }
     }
 
-    static async deleteSocialMedia(req: Request, res: Response, next: NextFunction) {
+    static async deleteSocialMedia(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const deletedSocialMedia = await SocialMediaService.deleteSocialMedia(req.params.id);
             if (!deletedSocialMedia) {
