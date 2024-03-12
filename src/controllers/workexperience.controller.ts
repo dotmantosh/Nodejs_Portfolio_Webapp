@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import WorkExperienceService from "../services/workexperience.service";
 import { WorkExperienceDocument } from "../models/workexperience.schema";
+import { UserDocument } from "../models/user.schema";
+
+// Extend the existing Request interface to include the user property
+interface AuthenticatedRequest extends Request {
+    user?: UserDocument; // Assuming UserDocument is the type of your user model
+}
 
 class WorkExperienceController {
-    static async createWorkExperience(req: Request, res: Response, next: NextFunction) {
+    static async createWorkExperience(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const workExperience = await WorkExperienceService.createWorkExperience(req.body);
             res.json(workExperience);
@@ -12,7 +18,7 @@ class WorkExperienceController {
         }
     }
 
-    static async fetchUserWorkExperience(req: Request, res: Response, next: NextFunction) {
+    static async fetchUserWorkExperience(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             // Assuming the authenticated user object is stored in req.user
             const user = req.user;
@@ -29,7 +35,7 @@ class WorkExperienceController {
         }
     }
 
-    static async updateWorkExperience(req: Request, res: Response, next: NextFunction) {
+    static async updateWorkExperience(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const updatedWorkExperience = await WorkExperienceService.updateWorkExperience(req.params.id, req.body);
             if (!updatedWorkExperience) {
@@ -41,7 +47,7 @@ class WorkExperienceController {
         }
     }
 
-    static async deleteWorkExperience(req: Request, res: Response, next: NextFunction) {
+    static async deleteWorkExperience(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const deletedWorkExperience = await WorkExperienceService.deleteWorkExperience(req.params.id);
             if (!deletedWorkExperience) {
