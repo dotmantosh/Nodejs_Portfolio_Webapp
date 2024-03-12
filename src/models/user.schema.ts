@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 // Interface for User document
-interface UserDocument extends Document {
+export interface UserDocument extends Document {
   email: string;
   password: string;
   username: string;

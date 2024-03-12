@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import SkillService from "../services/skill.service";
+import { UserDocument } from "../models/user.schema";
 // import { SkillDocument } from "../models/skill.schema";
 
+// Extend the existing Request interface to include the user property
+interface AuthenticatedRequest extends Request {
+    user?: UserDocument; // Assuming UserDocument is the type of your user model
+}
+
 class SkillController {
-    static async createSkill(req: Request, res: Response, next: NextFunction) {
+    static async createSkill(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const skill = await SkillService.createSkill(req.body);
             res.json(skill);
@@ -12,7 +18,7 @@ class SkillController {
         }
     }
 
-    static async fetchUserSkill(req: Request, res: Response, next: NextFunction) {
+    static async fetchUserSkill(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             // Assuming the authenticated user object is stored in req.user
             const user = req.user;
@@ -29,7 +35,7 @@ class SkillController {
         }
     }
 
-    static async updateSkill(req: Request, res: Response, next: NextFunction) {
+    static async updateSkill(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const updatedSkill = await SkillService.updateSkill(req.params.id, req.body);
             if (!updatedSkill) {
@@ -41,7 +47,7 @@ class SkillController {
         }
     }
 
-    static async deleteSkill(req: Request, res: Response, next: NextFunction) {
+    static async deleteSkill(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const deletedSkill = await SkillService.deleteSkill(req.params.id);
             if (!deletedSkill) {

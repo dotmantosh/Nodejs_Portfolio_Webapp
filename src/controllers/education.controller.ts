@@ -1,9 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import EducationService from "../services/eduction.service";
 import { EducationDocument } from "../models/education.schema";
+import { UserDocument } from "../models/user.schema";
 
+// Extend the existing Request interface to include the user property
+interface AuthenticatedRequest extends Request {
+    user?: UserDocument; // Assuming UserDocument is the type of your user model
+}
 class EducationController {
-    static async createEducation(req: Request, res: Response, next: NextFunction) {
+    static async createEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const education = await EducationService.createEducation(req.body);
             res.json(education);
@@ -12,10 +17,11 @@ class EducationController {
         }
     }
 
-    static async fetchUserEducation(req: Request, res: Response, next: NextFunction) {
+    static async fetchUserEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             // Assuming the authenticated user object is stored in req.user
             const user = req.user;
+
             if (!user) {
                 return res.status(401).json({ message: "Unauthorized" });
             }
@@ -29,7 +35,7 @@ class EducationController {
         }
     }
 
-    static async updateEducation(req: Request, res: Response, next: NextFunction) {
+    static async updateEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const updatedEducation = await EducationService.updateEducation(req.params.id, req.body);
             if (!updatedEducation) {
@@ -41,7 +47,7 @@ class EducationController {
         }
     }
 
-    static async deleteEducation(req: Request, res: Response, next: NextFunction) {
+    static async deleteEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const deletedEducation = await EducationService.deleteEducation(req.params.id);
             if (!deletedEducation) {
