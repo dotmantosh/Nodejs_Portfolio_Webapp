@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import ProjectService from "../services/project.service";
+import { UserDocument } from "../models/user.schema";
 // import { ProjectDocument } from "../models/project.schema";
 
+// Extend the existing Request interface to include the user property
+interface AuthenticatedRequest extends Request {
+    user?: UserDocument; // Assuming UserDocument is the type of your user model
+}
+
 class ProJectController {
-    static async createProject(req: Request, res: Response, next: NextFunction) {
+    static async createProject(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const project = await ProjectService.createProject(req.body);
             res.json(project);
@@ -12,7 +18,7 @@ class ProJectController {
         }
     }
 
-    static async fetchUserProject(req: Request, res: Response, next: NextFunction) {
+    static async fetchUserProject(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             // Assuming the authenticated user object is stored in req.user
             const user = req.user;
@@ -29,7 +35,7 @@ class ProJectController {
         }
     }
 
-    static async updateProject(req: Request, res: Response, next: NextFunction) {
+    static async updateProject(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const updatedProject = await ProjectService.updateProject(req.params.id, req.body);
             if (!updatedProject) {
@@ -41,7 +47,7 @@ class ProJectController {
         }
     }
 
-    static async deleteProject(req: Request, res: Response, next: NextFunction) {
+    static async deleteProject(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             const deletedProject = await ProjectService.deleteProject(req.params.id);
             if (!deletedProject) {
