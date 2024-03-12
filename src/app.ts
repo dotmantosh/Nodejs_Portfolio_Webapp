@@ -8,10 +8,13 @@ import api from './routes'
 
 import dotenv from "dotenv";
 import MessageResponse from "./interfaces/MessageResponse";
+import connectDB from "./db/db";
 
 dotenv.config();
+connectDB()
 
 const app: Express = express();
+
 
 app.use(morgan('dev'));
 app.use(helmet());
