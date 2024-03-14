@@ -80,7 +80,7 @@ class AuthController {
     }
   }
 
-  static async resetPassord(req: Request, res: Response, next: NextFunction) {
+  static async resetPassword(req: Request, res: Response, next: NextFunction) {
     try {
       // const result = await UserService.getAllUsers()
       let user;
