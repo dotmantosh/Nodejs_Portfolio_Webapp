@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { UserSchema } from '../models/user.schema';
 interface ExtendedRequest extends Request {
-  token?: string;
-  user?: any; // Update the type based on your UserSchema
+    token?: string;
+    user?: any; // Update the type based on your UserSchema
 }
 
 type Secret = string | Buffer | { key: string; passphrase: string; };
@@ -15,7 +15,7 @@ const auth = async (req: ExtendedRequest, res: Response, next: NextFunction) => 
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
         // Verify the token using the JWT_SECRET
-        const decoded = jwt.verify(token as string, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token as string, process.env.JWT_SECRET as Secret) as JwtPayload;
 
         // Find user based on decoded token
         const user = await UserSchema.findOne({ _id: decoded._id, 'tokens.token': token });
