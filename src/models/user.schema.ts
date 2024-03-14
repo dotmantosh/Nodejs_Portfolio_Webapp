@@ -15,35 +15,37 @@ export interface UserDocument extends Document {
   workExperiences: Types.ObjectId[];
   projects: Types.ObjectId[];
   profile: Types.ObjectId;
-  tokens: [{token: string}]
+  tokens: { token: string }[];
+  generateAuthToken(): Promise<string>;
 }
+
 
 // User Schema
 const userSchema = new Schema<UserDocument>({
-  username:{
+  username: {
     type: String,
     require: true,
     trim: true
   },
-  email:{
+  email: {
     type: String,
     unique: true,
     required: true,
     trim: true,
     lowercase: true,
-    validate(value: string){
-      if(!validator.isEmail(value)) {
+    validate(value: string) {
+      if (!validator.isEmail(value)) {
         throw new Error('Email is invalid')
       }
     }
   },
-  password:{
+  password: {
     type: String,
     required: true,
     trim: true,
     minlength: 6,
-    validate(value: string){
-      if(value.toLowerCase().includes('password')){
+    validate(value: string) {
+      if (value.toLowerCase().includes('password')) {
         throw new Error('Password must not include "password"')
       }
     }
@@ -59,12 +61,12 @@ const userSchema = new Schema<UserDocument>({
   },
   profile: { type: Schema.Types.ObjectId, ref: 'Profile' },
   tokens: [{
-    token:{
+    token: {
       type: String,
       required: true
     }
   }]
-}, {timestamps: true});
+}, { timestamps: true });
 
 userSchema.plugin(mongoosePaginate)
 
@@ -78,9 +80,9 @@ userSchema.methods.toJSON = function () {
 }
 
 // hash password before save
-userSchema.pre('save', async function (next){
+userSchema.pre('save', async function (next) {
   const user = this
-  if(user.isModified('password')){
+  if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8)
   }
   next()
@@ -91,7 +93,7 @@ userSchema.methods.generateAuthToken = async function () {
 
   const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET as string)
 
-  user.tokens = user.tokens.concat({token})
+  user.tokens = user.tokens.concat({ token })
   await user.save()
   return token
 }
