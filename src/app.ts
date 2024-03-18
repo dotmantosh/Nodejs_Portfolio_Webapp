@@ -31,5 +31,6 @@ app.use('/api/v1', api)
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
+// app.use(middlewares.successHandler);
 
 export default app

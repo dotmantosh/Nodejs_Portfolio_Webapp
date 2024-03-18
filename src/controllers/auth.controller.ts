@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import UserService from "../services/user.service";
 import { UserDocument, UserSchema } from "../models/user.schema";
-
+// import { ExtendedRequest } from "../middlewares/auth.middleware";
 export interface RequestWithUser extends Request {
   user: UserDocument; // Assuming token is a string
 }
-interface RequestWithToken extends Request, RequestWithUser {
+interface RequestWithToken extends RequestWithUser {
   token: string; // Assuming token is a string
 }
 
@@ -37,7 +37,7 @@ class AuthController {
   }
 
 
-  static async logoutUser(req: RequestWithToken, res: Response, next: NextFunction) {
+  static async logoutUser(req: Request, res: Response, next: NextFunction) {
     try {
 
       req.user.tokens = req.user.tokens.filter(token => token.token !== req.token)
@@ -49,7 +49,7 @@ class AuthController {
   }
   static async getUsers(req: Request, res: Response, next: NextFunction) {
     try {
-      // const result = await UserService.getAllUsers()
+      const result = await UserService.getAllUsers()
       let user;
       user = {}
       res.json(user)

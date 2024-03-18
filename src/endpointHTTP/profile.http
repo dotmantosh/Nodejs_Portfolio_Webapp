@@ -1,0 +1,35 @@
+### Create Profile Example
+POST http://localhost:5000/api/v1/profile/create
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe"
+}
+
+###
+
+### Get All Profiles Example
+GET http://localhost:5000/api/v1/profile/fetch
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY1OTM1MmFlYTJmNTI4OTc2MDNkMDgiLCJpYXQiOjE3MTA2MDUwNTF9.898qUj7Yqw1Bh6pqaJi5yypD1FKz2kKBdWPnU1-v_JU
+###
+
+### Get Single Profile Example
+GET http://localhost:5000/api/v1/profile/fetch/
+
+###
+
+### Update Profile Example
+PATCH http://localhost:3000/profile/
+Content-Type: application/json
+
+{
+    "lastName": "Smith"
+}
+
+###
+
+### Delete Profile Example
+DELETE http://localhost:3000/profile/
+
+###
