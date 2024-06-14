@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import EducationService from "../services/eduction.service";
-import { EducationDocument } from "../models/education.schema";
+// import { EducationDocument } from "../models/education.schema";
 import { UserDocument } from "../models/user.schema";
+import UserService from "../services/user.service";
 
 // Extend the existing Request interface to include the user property
 interface AuthenticatedRequest extends Request {
@@ -10,6 +11,8 @@ interface AuthenticatedRequest extends Request {
 class EducationController {
     static async createEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
+            const user = res.locals.user
+            req.body.userId = user._id
             const education = await EducationService.createEducation(req.body);
             res.json(education);
         } catch (error) {
@@ -19,13 +22,25 @@ class EducationController {
 
     static async fetchUserEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
-            // Assuming the authenticated user object is stored in req.user
-            const user = req.user;
+            // Assuming the authenticated user object is stored in res.locals.user
+            const user = res.locals.user;
 
-            if (!user) {
-                return res.status(401).json({ message: "Unauthorized" });
+            const education = await EducationService.findByCondition({ userId: user._id });
+            if (!education) {
+                return res.status(404).json({ message: "Education not found" });
             }
-            const education = await EducationService.findById(user._id);
+            res.json(education);
+        } catch (error) {
+            next(error); // Pass error to the error handling middleware
+        }
+    }
+
+    static async fetchByUsername(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+        try {
+            // Assuming the authenticated user object is stored in res.locals.user
+            const user = await UserService.findByUserName(req.params.username)
+
+            const education = await EducationService.findByCondition({ userId: user._id });
             if (!education) {
                 return res.status(404).json({ message: "Education not found" });
             }
@@ -37,6 +52,11 @@ class EducationController {
 
     static async updateEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
+            const user = res.locals.user
+            const existingEducation = await EducationService.findOne({ _id: req.params.id, userId: user._id })
+            if (!existingEducation) {
+                return res.status(404).json({ message: "Education not found" })
+            }
             const updatedEducation = await EducationService.updateEducation(req.params.id, req.body);
             if (!updatedEducation) {
                 return res.status(404).json({ message: "Education not found" });
@@ -49,6 +69,11 @@ class EducationController {
 
     static async deleteEducation(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
+            const user = res.locals.user
+            const existingEducation = await EducationService.findOne({ _id: req.params.id, userId: user._id })
+            if (!existingEducation) {
+                return res.status(404).json({ message: "Education not found" })
+            }
             const deletedEducation = await EducationService.deleteEducation(req.params.id);
             if (!deletedEducation) {
                 return res.status(404).json({ message: "Education not found" });
