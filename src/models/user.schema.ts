@@ -11,10 +11,14 @@ export interface UserDocument extends Document {
   username: string;
   role: 'admin' | 'user';
   emailVerified: boolean;
-  skills: Types.ObjectId[];
+  techStack: Types.ObjectId[];
   workExperiences: Types.ObjectId[];
   projects: Types.ObjectId[];
   profile: Types.ObjectId;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: number;
+  imageId: string;
+  imageUrl: string;
   tokens: { token: string }[];
   generateAuthToken(): Promise<string>;
 }
@@ -24,6 +28,7 @@ export interface UserDocument extends Document {
 const userSchema = new Schema<UserDocument>({
   username: {
     type: String,
+    unique: true,
     require: true,
     trim: true
   },
@@ -55,11 +60,14 @@ const userSchema = new Schema<UserDocument>({
     enum: ['admin', 'user'],
     default: 'user'
   },
+  imageId: String,
+  imageUrl: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   emailVerified: {
     type: Boolean,
     default: false
   },
-  profile: { type: Schema.Types.ObjectId, ref: 'Profile' },
   tokens: [{
     token: {
       type: String,
@@ -71,6 +79,7 @@ const userSchema = new Schema<UserDocument>({
 userSchema.plugin(mongoosePaginate)
 
 userSchema.methods.toJSON = function () {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this
   const userObject = user.toObject()
 
@@ -81,6 +90,7 @@ userSchema.methods.toJSON = function () {
 
 // hash password before save
 userSchema.pre('save', async function (next) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8)
@@ -89,6 +99,7 @@ userSchema.pre('save', async function (next) {
 })
 
 userSchema.methods.generateAuthToken = async function () {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this
 
   const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET as string)
@@ -103,8 +114,8 @@ userSchema.virtual('profiles', {
   localField: '_id',
   foreignField: 'userId'
 })
-userSchema.virtual('skills', {
-  ref: "Skill",
+userSchema.virtual('techStack', {
+  ref: "TechStack",
   localField: '_id',
   foreignField: 'userId'
 })
