@@ -1,16 +1,16 @@
 import express from "express";
 import WorkExperienceController from '../controllers/workexperience.controller'
-import MessageResponse from "../interfaces/MessageResponse";
+// import MessageResponse from "../interfaces/MessageResponse";
 import isAuthenticated from "../middlewares/auth.middleware"
 
 const router = express.Router();
 
-router.get<{}, MessageResponse>("/fetch", isAuthenticated, WorkExperienceController.fetchUserWorkExperience);
-router.get<{}, MessageResponse>("/user/fetch", isAuthenticated, WorkExperienceController.fetchUserWorkExperience);
-router.get<{}, MessageResponse>("/fetch/:id", isAuthenticated, WorkExperienceController.fetchUserWorkExperience);
-router.post<{}, MessageResponse>("/create", isAuthenticated, WorkExperienceController.createWorkExperience);
-router.put<{}, MessageResponse>("/update/:id", isAuthenticated, WorkExperienceController.updateWorkExperience);
-router.delete<{}, MessageResponse>("/delete/:id", isAuthenticated, WorkExperienceController.deleteWorkExperience);
+router.get("/fetch", isAuthenticated, WorkExperienceController.fetchUserWorkExperience);
+router.get("/user/fetch", isAuthenticated, WorkExperienceController.fetchUserWorkExperience);
+router.get("/fetch/:username", WorkExperienceController.fetchByUsername);
+router.post("/create", isAuthenticated, WorkExperienceController.createWorkExperience);
+router.put("/update/:id", isAuthenticated, WorkExperienceController.updateWorkExperience);
+router.delete("/delete/:id", isAuthenticated, WorkExperienceController.deleteWorkExperience);
 
 
 export default router;

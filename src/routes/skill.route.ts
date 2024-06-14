@@ -1,16 +1,22 @@
 import express from "express";
 import SkillController from '../controllers/skill.controller'
-import MessageResponse from "../interfaces/MessageResponse";
 import isAuthenticated from "../middlewares/auth.middleware"
 
 const router = express.Router();
 
-router.get<{}, MessageResponse>("/fetch", isAuthenticated, SkillController.fetchUserSkill);
-router.get<{}, MessageResponse>("/user/fetch", isAuthenticated, SkillController.fetchUserSkill);
-router.get<{}, MessageResponse>("/fetch/:id", isAuthenticated, SkillController.fetchUserSkill);
-router.post<{}, MessageResponse>("/create", isAuthenticated, SkillController.createSkill);
-router.put<{}, MessageResponse>("/update/:id", isAuthenticated, SkillController.updateSkill);
-router.delete<{}, MessageResponse>("/delete/:id", isAuthenticated, SkillController.deleteSkill);
+// eslint-disable-next-line @typescript-eslint/ban-types
+router.get("/fetch/all", SkillController.fetchAllSkills);
+// eslint-disable-next-line @typescript-eslint/ban-types
+router.get("/user/fetch", isAuthenticated, SkillController.fetchUserSkill);
+// eslint-disable-next-line @typescript-eslint/ban-types
+router.get("/fetch/:id", isAuthenticated, SkillController.fetchUserSkill);
+// eslint-disable-next-line @typescript-eslint/ban-types
+router.post("/create", SkillController.createSkill);
+// eslint-disable-next-line @typescript-eslint/ban-types
+router.put("/update/:id", isAuthenticated, SkillController.updateSkill);
+router.get("/update-imgUrl", SkillController.updateSkillsFromJsonFile);
+// eslint-disable-next-line @typescript-eslint/ban-types
+router.delete("/delete/:id", isAuthenticated, SkillController.deleteSkill);
 
 
 export default router;
