@@ -26,7 +26,15 @@ class EducationService {
     }
   }
 
-  static async findByCondition(condition: {}): Promise<EducationDocument[]> {
+  static async findOne(condition: object): Promise<EducationDocument | null> {
+    try {
+      return await EducationSchema.findOne(condition);
+    } catch (error) {
+      throw new Error(`Error while finding Project by id: ${error}`);
+    }
+  }
+
+  static async findByCondition(condition: object): Promise<EducationDocument[]> {
     try {
       return await EducationSchema.find(condition);
     } catch (error) {

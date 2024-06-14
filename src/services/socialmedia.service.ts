@@ -26,7 +26,14 @@ class SocialMediaService {
     }
   }
 
-  static async findByCondition(condition: {}): Promise<SocialMediaDocument[]> {
+  static async findOne(condition: object): Promise<SocialMediaDocument | null> {
+    try {
+      return await SocialMediaSchema.findOne(condition);
+    } catch (error) {
+      throw new Error(`Error while finding Project by id: ${error}`);
+    }
+  }
+  static async findByCondition(condition: object): Promise<SocialMediaDocument[]> {
     try {
       return await SocialMediaSchema.find(condition);
     } catch (error) {
