@@ -1,0 +1,440 @@
+[
+  {
+    "_id": "66291a50d92b9388540306a4",
+    "name": "algolia",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/algolia/algolia-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291a8fd92b9388540306a7",
+    "name": "alpinejs",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/alpinejs/alpinejs-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291aced92b9388540306aa",
+    "name": "Amazon Web Service (aws)",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291aeed92b9388540306ad",
+    "name": "Angular",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/angular/angular-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291b12d92b9388540306b0",
+    "name": "Angular Materia",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/angularmaterial/angularmaterial-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291b34d92b9388540306b3",
+    "name": "Ant Design",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/antdesign/antdesign-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291b6ed92b9388540306b6",
+    "name": "Azure",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/azure/azure-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291b98d92b9388540306b9",
+    "name": "BitBucket",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/bitbucket/bitbucket-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291bb8d92b9388540306bc",
+    "name": "Bootstrap",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291bd5d92b9388540306bf",
+    "name": "Bun",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/bun/bun-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291bf4d92b9388540306c2",
+    "name": "C",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291c37d92b9388540306c5",
+    "name": "Codeigniter",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/codeigniter/codeigniter-plain.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291c61d92b9388540306c8",
+    "name": "Css",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291c93d92b9388540306cb",
+    "name": "Csharp c#",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291cbfd92b9388540306ce",
+    "name": "Dart",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291d09d92b9388540306d1",
+    "name": "Docker",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291d36d92b9388540306d4",
+    "name": "dotnet",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291d77d92b9388540306d7",
+    "name": "drupal",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/drupal/drupal-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291d99d92b9388540306da",
+    "name": "Asp.Net",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291dc2d92b9388540306dd",
+    "name": "DynamoDb",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/dynamodb/dynamodb-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291de8d92b9388540306e0",
+    "name": "ElasticSearch",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/elasticsearch/elasticsearch-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291e04d92b9388540306e3",
+    "name": "Electron",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/electron/electron-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291e24d92b9388540306e6",
+    "name": "Express",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291e4cd92b9388540306e9",
+    "name": "FastApi",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/fastapi/fastapi-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291e7bd92b9388540306ec",
+    "name": "Feathersjs",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/feathersjs/feathersjs-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291e9ad92b9388540306ef",
+    "name": "Figma",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291eb5d92b9388540306f2",
+    "name": "Firebase",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291ed2d92b9388540306f5",
+    "name": "Flask",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/flask/flask-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291eecd92b9388540306f8",
+    "name": "Flutter",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291f0dd92b9388540306fb",
+    "name": "Fortran",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/fortran/fortran-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291f37d92b9388540306fe",
+    "name": "FramerMotion",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/framermotion/framermotion-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291f5ad92b938854030701",
+    "name": "Fsharp F#",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/fsharp/fsharp-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66291f75d92b938854030704",
+    "name": "Gasby",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/fsharp/fsharp-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292007d92b938854030707",
+    "name": "Git",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629203ad92b93885403070a",
+    "name": "GraphQl",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/graphql/graphql-plain.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629206dd92b93885403070d",
+    "name": "Gulp",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/gulp/gulp-plain.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292097d92b938854030710",
+    "name": "Hardhat",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/hardhat/hardhat-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662920bbd92b938854030713",
+    "name": "Haskel",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/haskell/haskell-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662920ddd92b938854030716",
+    "name": "Html",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662920fbd92b938854030719",
+    "name": "Java",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629211ed92b93885403071c",
+    "name": "javaScript",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629213cd92b93885403071f",
+    "name": "jenkins",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292162d92b938854030722",
+    "name": "jQuery",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/jquery/jquery-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662921a2d92b938854030725",
+    "name": "Kotlin",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/kotlin/kotlin-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662921c7d92b938854030728",
+    "name": "Kubernetes",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/kubernetes/kubernetes-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662921ebd92b93885403072b",
+    "name": "Laravel",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292214d92b93885403072e",
+    "name": "Materia-ui",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629222ed92b938854030731",
+    "name": "Materialize Css",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/materializecss/materializecss-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292252d92b938854030734",
+    "name": "Mocha",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mocha/mocha-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292276d92b938854030737",
+    "name": "mongodb",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292294d92b93885403073a",
+    "name": "mysql",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662922b6d92b93885403073d",
+    "name": "Next.js",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662922d5d92b938854030740",
+    "name": "nginx",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292303d92b938854030743",
+    "name": "ngrx",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/ngrx/ngrx-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292320d92b938854030746",
+    "name": "Node.js",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292342d92b938854030749",
+    "name": "Nuxt.js",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nuxtjs/nuxtjs-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629236ad92b93885403074c",
+    "name": "Php",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292382d92b93885403074f",
+    "name": "Photoshop",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662923cbd92b938854030752",
+    "name": "Postgresql",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662923eed92b938854030755",
+    "name": "Prisma",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/prisma/prisma-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292414d92b938854030758",
+    "name": "Python",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629243ad92b93885403075b",
+    "name": "React",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292494d92b93885403075e",
+    "name": "Redux",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662924c5d92b938854030761",
+    "name": "Sass",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662924e0d92b938854030764",
+    "name": "Solidity",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/solidity/solidity-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292501d92b938854030767",
+    "name": "Swift",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629251ed92b93885403076a",
+    "name": "Tailwind",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "6629253ad92b93885403076d",
+    "name": "Three.js",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/threejs/threejs-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292563d92b938854030770",
+    "name": "TypeScript",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "66292591d92b938854030773",
+    "name": "Vue.js",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662925aad92b938854030776",
+    "name": "Vuetify",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuetify/vuetify-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662925c7d92b938854030779",
+    "name": "Wordpress",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-original.svg",
+    "__v": 0
+  },
+  {
+    "_id": "662925e9d92b93885403077c",
+    "name": "xml",
+    "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/xml/xml-original.svg",
+    "__v": 0
+  }
+]
