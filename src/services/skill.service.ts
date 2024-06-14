@@ -26,7 +26,15 @@ class SkillService {
     }
   }
 
-  static async findByCondition(condition: {}): Promise<SkillDocument[]> {
+  static async findOne(condition: object): Promise<SkillDocument | null> {
+    try {
+      return await SkillSchema.findOne(condition);
+    } catch (error) {
+      throw new Error(`Error while finding Project by id: ${error}`);
+    }
+  }
+
+  static async findByCondition(condition: object): Promise<SkillDocument[]> {
     try {
       return await SkillSchema.find(condition);
     } catch (error) {
