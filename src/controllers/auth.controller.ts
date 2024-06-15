@@ -2,7 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import UserService from "../services/user.service";
 import { UserDocument, UserSchema } from "../models/user.schema";
 import crypto from 'crypto'
-import nodemailer from "nodemailer"
+import emailService from "../services/email.service";
+
 // import { ExtendedRequest } from "../middlewares/auth.middleware";
 export interface RequestWithUser extends Request {
   user: UserDocument; // Assuming token is a string
@@ -135,7 +136,7 @@ class AuthController {
       await user.save();
 
       // Send email
-      const resetUrl = `${process.env.APP_URL}/reset-password/${resetToken}`;
+      const resetUrl = `${process.env.APP_URL_PROD}/reset-password/${resetToken}`;
       const message = `
         <h1 
           style="background: linear-gradient(to right, #13b0f5, #e70faa);
@@ -162,22 +163,11 @@ class AuthController {
         </a>
       `;
 
-      const transporter = nodemailer.createTransport({
-        service: 'gmail', // or any other email service
-        auth: {
-          user: process.env.NODEMAILER_EMAIL,
-          pass: process.env.NODEMAILER_PASSWORD,
-        },
-      });
-
-      const mailOptions = {
-        from: process.env.NODEMAILER_EMAIL,
+      await emailService.sendEmail({
         to: user.email,
         subject: 'MPW Password Reset Request',
         html: message,
-      };
-
-      await transporter.sendMail(mailOptions);
+      });
 
       res.status(200).json({ message: 'Email sent' });
     } catch (error) {
