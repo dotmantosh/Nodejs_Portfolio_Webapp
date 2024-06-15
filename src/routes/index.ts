@@ -9,6 +9,7 @@ import skill from './skill.route'
 import techStack from './techStack.route'
 import socialMedia from './socialmedia.route'
 import workExperience from './workexperience.route'
+import publicRoute from './public.route'
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.get<object,
         message: "API - 👋🌎🌍🌏",
       });
     });
-
+router.use('/public', publicRoute)
 router.use('/user', auth);
 router.use('/profile', profile);
 router.use('/project', project);
