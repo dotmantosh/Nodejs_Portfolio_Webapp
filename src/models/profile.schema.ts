@@ -19,7 +19,8 @@ export interface ProfileDocument extends Document {
   allowResumeDownload: boolean;
   allowPublicUrl: boolean;
   userId: Types.ObjectId;
-
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 // Project Schema
@@ -42,7 +43,7 @@ const profileSchema = new Schema<ProfileDocument>({
   resumeUrl: String,
   resumeName: String,
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }
-});
+}, { timestamps: true });
 
 // Create the unique index on the userId field
 // User cannot create more than one profile

@@ -33,7 +33,7 @@ class ProJectController {
         try {
             // Assuming the authenticated user object is stored in res.locals.user
             const user = res.locals.user;
-            const project = await ProjectService.findByCondition({ userId: user._id });
+            const project = (await ProjectService.findByCondition({ userId: user._id }))
             res.json(project);
         } catch (error) {
             next(error); // Pass error to the error handling middleware
@@ -56,7 +56,7 @@ class ProJectController {
     static async fetchProjectsByUsername(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             // Assuming the authenticated user object is stored in res.locals.user
-            const projects = await ProjectService.findByUsername(req.params.username);
+            const projects = (await ProjectService.findByUsername(req.params.username));
 
             res.json(projects);
         } catch (error) {

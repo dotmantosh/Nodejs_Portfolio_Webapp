@@ -15,9 +15,10 @@ class ProfileController {
         try {
             const user = res.locals.user
             if (req.body.photo) {
-                const uploadResponse = await uploadImage(req.body.photo, UploadPreset.ProfilePicture);
-                req.body.imageId = uploadResponse.public_id
-                req.body.imageUrl = uploadResponse.secure_url
+                const { public_id, secure_url } = await uploadImage(req.body.photo, UploadPreset.ProfilePicture);
+                req.body.imageId = public_id
+                req.body.imageUrl = secure_url
+                await UserService.updateUserProfilePicture(user._id, { imageId: public_id, imageUrl: secure_url } as UserDocument)
             }
             if (req.body.resume) {
                 const uploadResponse = await uploadPDF(req.body.resume, UploadPreset.ResumePDF);
@@ -60,12 +61,13 @@ class ProfileController {
             // Assuming the authenticated user object is stored in res.locals.user
             const user = res.locals.user;
 
-            const profile = await ProfileService.findOneAndPopulate({ userId: user._id });
+            const profile = await ProfileService.findByCondition({ userId: user._id });
             if (!profile) {
                 return res.status(404).json({ message: "Profile not found" });
             }
             res.json(profile);
         } catch (error) {
+            console.log(error)
             next(error); // Pass error to the error handling middleware
         }
     }

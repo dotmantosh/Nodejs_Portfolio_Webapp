@@ -1,25 +1,29 @@
-import nodemailer from 'nodemailer';
+import nodemailer, { Transporter } from 'nodemailer';
 
-interface SendEmailOptions {
+interface EmailOptions {
   to: string;
   subject: string;
   html: string;
 }
 
 class EmailService {
-  private transporter;
+  private static transporter: Transporter;
 
-  constructor() {
-    this.transporter = nodemailer.createTransport({
-      service: 'gmail', // or any other email service
-      auth: {
-        user: process.env.NODEMAILER_EMAIL,
-        pass: process.env.NODEMAILER_PASSWORD,
-      },
-    });
+  private static initialize() {
+    if (!this.transporter) {
+      this.transporter = nodemailer.createTransport({
+        service: 'gmail', // You can use other email services as well
+        auth: {
+          user: process.env.NODEMAILER_EMAIL,
+          pass: process.env.NODEMAILER_PASSWORD,
+        },
+      });
+    }
   }
 
-  async sendEmail(options: SendEmailOptions) {
+  public static async sendEmail(options: EmailOptions): Promise<void> {
+    this.initialize();
+
     const mailOptions = {
       from: process.env.NODEMAILER_EMAIL,
       to: options.to,
@@ -29,12 +33,11 @@ class EmailService {
 
     try {
       await this.transporter.sendMail(mailOptions);
-      console.log('Email sent successfully');
     } catch (error) {
-      console.error('Error sending email', error);
+      console.error('Error sending email:', error);
       throw new Error('Error sending email');
     }
   }
 }
 
-export default new EmailService();
+export default EmailService;

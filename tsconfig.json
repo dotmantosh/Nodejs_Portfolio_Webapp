@@ -14,5 +14,5 @@
     "typeRoots": ["custom.d.ts"]
   },
   "exclude": ["node_modules"],
-  "include": ["./api/*.ts", "src/**/*.ts", "src/middlewares/append-express-response-property.js"],
+  "include": ["./api/*.ts", "src/**/*.ts", "src/middlewares/append-express-response-property.ts"],
 }

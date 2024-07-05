@@ -10,7 +10,7 @@ export interface TechStackDocument extends Document {
 const techStackSchema = new Schema<TechStackDocument>({
   skillId: { type: Schema.Types.ObjectId, ref: 'Skill' },
   userId: { type: Schema.Types.ObjectId, ref: 'User' }
-});
+}, { timestamps: true });
 
 // Define a compound index to enforce uniqueness of userId and skillId combination
 techStackSchema.index({ userId: 1, skillId: 1 }, { unique: true });

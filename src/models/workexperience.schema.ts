@@ -5,6 +5,8 @@ export interface WorkExperienceDocument extends Document {
   title: string;
   company: string;
   workType: string;
+  country: string;
+  state: string;
   employmentType: string;
   description: string;
   skills: Types.ObjectId[];
@@ -12,6 +14,8 @@ export interface WorkExperienceDocument extends Document {
   endDate: Date;
   stillWorkingHere: boolean;
   userId: Types.ObjectId;
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 // WorkExperience Schema
@@ -20,13 +24,21 @@ const workExperienceSchema = new Schema<WorkExperienceDocument>({
   company: String,
   workType: String,
   employmentType: String,
+  country: String,
+  state: String,
   startDate: Date,
   endDate: Date,
   stillWorkingHere: Boolean,
   description: String,
   skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }],
   userId: { type: Schema.Types.ObjectId, ref: 'User' },
-});
+},
+  {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+  }
+);
 
 // Define a pre-save hook to enforce the maximum limit
 const MAX_WORK_EXPERIENCE = 100; // Maximum number of skills allowed
@@ -41,8 +53,8 @@ workExperienceSchema.pre('save', async function (next) {
 
 workExperienceSchema.virtual('populatedSkills', {
   ref: 'Skill', // Reference to Skill model
-  localField: '_id', // Field in the WorkExperience schema
-  foreignField: 'workExperienceId', // Field in the Skill schema
+  localField: 'skills', // Field in the WorkExperience schema
+  foreignField: '_id', // Field in the Skill schema
   justOne: false // Set to false if the 'skills' field is an array
 });
 

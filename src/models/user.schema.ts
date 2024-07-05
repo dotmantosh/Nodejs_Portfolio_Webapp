@@ -20,6 +20,8 @@ export interface UserDocument extends Document {
   imageId: string;
   imageUrl: string;
   tokens: { token: string }[];
+  createdAt?: Date
+  updatedAt?: Date
   generateAuthToken(): Promise<string>;
 }
 
@@ -29,7 +31,7 @@ const userSchema = new Schema<UserDocument>({
   username: {
     type: String,
     unique: true,
-    require: true,
+    required: true,
     trim: true
   },
   email: {

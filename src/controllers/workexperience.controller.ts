@@ -14,6 +14,7 @@ class WorkExperienceController {
         try {
             const user = res.locals.user
             req.body.userId = user._id
+            // console.log(req.body)
             const workExperience = await WorkExperienceService.createWorkExperience(req.body);
             res.json(workExperience);
         } catch (error) {
@@ -25,10 +26,10 @@ class WorkExperienceController {
         try {
             // Assuming the authenticated user object is stored in res.locals.user
             const user = res.locals.user;
-            const workExperience = await WorkExperienceService.findByCondition({ userId: user._id });
-
+            const workExperience = (await WorkExperienceService.findByCondition({ userId: user._id }))
             res.json(workExperience);
         } catch (error) {
+            console.log(error)
             next(error); // Pass error to the error handling middleware
         }
     }
@@ -36,10 +37,11 @@ class WorkExperienceController {
         try {
             // Assuming the authenticated user object is stored in res.locals.user
             const user = await UserService.findByUserName(req.params.username)
-            const workExperience = await WorkExperienceService.findByCondition({ userId: user._id });
+            const workExperiences = (await WorkExperienceService.findByCondition({ userId: user._id }))
 
-            res.json(workExperience);
+            res.json(workExperiences);
         } catch (error) {
+            console.log(error)
             next(error); // Pass error to the error handling middleware
         }
     }
@@ -49,6 +51,7 @@ class WorkExperienceController {
             const user = res.locals.user
             const id = req.params.id
             const existingWorkExperience = await WorkExperienceService.findOne({ _id: id, userId: user._id })
+            console.log(req.body)
             if (!existingWorkExperience) {
                 return res.status(404).json({ message: "WorkExperience not found" })
             }

@@ -14,7 +14,11 @@ connectDB()
 
 const app: Express = express();
 
-
+// const corsOptions = {
+//   origin: 'http://localhost:3000', // Replace with your frontend URL
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+// };
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());

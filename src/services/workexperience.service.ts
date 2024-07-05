@@ -34,42 +34,20 @@ class WorkExperienceService {
     }
   }
 
-  static async findByCondition(condition: object): Promise<WorkExperienceDocument[]> {
-
+  static async findByCondition(condition: object) {
     try {
-      return await WorkExperienceSchema.aggregate([
-        {
-          $match: condition // Assuming you have user authentication and have access to req.user._id
-        },
-        {
-          $lookup: {
-            from: 'skills',
-            localField: 'skills',
-            foreignField: '_id',
-            as: 'populatedSkills'
-          }
-        },
-        {
-          $project: {
-            title: 1,
-            company: 1,
-            workType: 1,
-            employmentType: 1,
-            description: 1,
-            startDate: 1,
-            endDate: 1,
-            stillWorkingHere: 1,
-            userId: 1,
-            populatedSkills: {
-              name: 1,
-              imageUrl: 1
-            }
-          }
-        }
-      ]);
+      const workExperiences = await WorkExperienceSchema.find(condition)
+        .populate({
+          path: 'populatedSkills',
+          model: 'Skill',
+          options: { virtuals: true }
+        })
+        .sort({ createdAt: -1 });
+      return workExperiences;
     } catch (error) {
       throw new Error(`Error while finding all WorkExperiences: ${error}`);
     }
+
   }
 
 

@@ -85,38 +85,14 @@ class ProjectService {
   static async findByCondition(condition: object): Promise<ProjectDocument[]> {
     try {
       // return await ProjectSchema.find(condition);
-      return await ProjectSchema.aggregate([
-        {
-          $match: condition // Assuming you have user authentication and have access to req.user._id
-        },
-        {
-          $lookup: {
-            from: 'skills',
-            localField: 'skills',
-            foreignField: '_id',
-            as: 'populatedSkills'
-          }
-        },
-        {
-          $project: {
-            name: 1,
-            description: 1,
-            workType: 1,
-            startDate: 1,
-            endDate: 1,
-            livePreviewLink: 1,
-            githubRepo: 1,
-            imageUrl: 1,
-            imageId: 1,
-            userId: 1,
-            populatedSkills: {
-              _id: 1,
-              name: 1,
-              imageUrl: 1
-            }
-          }
-        }
-      ]);
+      const projects = await ProjectSchema.find(condition)
+        .populate({
+          path: 'populatedSkills',
+          model: 'Skill',
+          options: { virtuals: true }
+        })
+        .sort({ createdAt: -1 });
+      return projects;
     } catch (error) {
       throw new Error(`Error while finding all Projects: ${error}`);
     }
@@ -125,38 +101,12 @@ class ProjectService {
   static async findByUsername(username: string): Promise<ProjectDocument[]> {
     try {
       const user = await UserService.findByUserName(username)
-      const project = await ProjectSchema.aggregate([
-        {
-          $match: { userId: user._id }
-        },
-        {
-          $lookup: {
-            from: 'skills',
-            localField: 'skills',
-            foreignField: '_id',
-            as: 'populatedSkills'
-          }
-        },
-        {
-          $project: {
-            name: 1,
-            description: 1,
-            workType: 1,
-            startDate: 1,
-            endDate: 1,
-            livePreviewLink: 1,
-            githubRepo: 1,
-            imageUrl: 1,
-            imageId: 1,
-            userId: 1,
-            populatedSkills: {
-              _id: 1,
-              name: 1,
-              imageUrl: 1
-            }
-          }
-        }
-      ]);
+      const project = await ProjectSchema.find({ userId: user._id }).populate({
+        path: 'populatedSkills',
+        model: 'Skill',
+        options: { virtuals: true }
+      })
+        .sort({ createdAt: -1 });
       return project
     } catch (error) {
       throw new Error(`Error while finding all Projects: ${error}`);

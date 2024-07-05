@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import emailService from "../services/email.service";
+import EmailService from "../services/email.service";
 
 
 class PublicController {
@@ -22,7 +22,7 @@ class PublicController {
           <strong>Message: </strong> ${message}
         </p>
       `
-      await emailService.sendEmail({
+      await EmailService.sendEmail({
         to: process.env.NODEMAILER_EMAIL as string,
         subject: "Devfolio Contact Us Message",
         html: Message

@@ -14,7 +14,7 @@ router.get("/fetch/:id", isAuthenticated, SkillController.fetchUserSkill);
 router.post("/create", SkillController.createSkill);
 // eslint-disable-next-line @typescript-eslint/ban-types
 router.put("/update/:id", isAuthenticated, SkillController.updateSkill);
-router.get("/update-imgUrl", SkillController.updateSkillsFromJsonFile);
+// router.get("/update-imgUrl", SkillController.updateSkillsFromJsonFile);
 // eslint-disable-next-line @typescript-eslint/ban-types
 router.delete("/delete/:id", isAuthenticated, SkillController.deleteSkill);
 

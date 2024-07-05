@@ -26,6 +26,37 @@ class SkillService {
     }
   }
 
+  static async removeDuplicateSkills() {
+    try {
+      // Find duplicate skills
+      const duplicates = await SkillSchema.aggregate([
+        {
+          $group: {
+            _id: { name: '$name' },
+            count: { $sum: 1 },
+            ids: { $push: '$_id' }
+          }
+        },
+        {
+          $match: { count: { $gt: 1 } }
+        }
+      ]);
+
+      // Remove duplicates
+      for (const duplicate of duplicates) {
+        // Keep the first document, remove the rest
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const [firstId, ...idsToRemove] = duplicate.ids;
+        await SkillSchema.deleteMany({ _id: { $in: idsToRemove } });
+      }
+
+      console.log('Duplicate skills removed successfully');
+    } catch (error) {
+      console.error('Error removing duplicate skills:', error);
+      throw new Error()
+    }
+  }
+
   static async findOne(condition: object): Promise<SkillDocument | null> {
     try {
       return await SkillSchema.findOne(condition);

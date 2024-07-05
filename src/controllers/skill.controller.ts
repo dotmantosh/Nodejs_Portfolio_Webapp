@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import SkillService from "../services/skill.service";
 import { UserDocument } from "../models/user.schema";
 import fs from 'fs'
+import { SkillDocument } from "../models/skills.schema";
 // import { SkillDocument } from "../models/skill.schema";
 
 // Extend the existing Request interface to include the user property
@@ -18,7 +19,37 @@ class SkillController {
             next(error); // Pass error to the error handling middleware
         }
     }
+    static async removeDuplicate(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+        try {
+            await SkillService.removeDuplicateSkills();
+            console.log("dup removed, console from controller")
+            res.json({ message: "duplicate removed" });
+        } catch (error) {
+            console.log("error removing dup")
+            next(error); // Pass error to the error handling middleware
+        }
+    }
 
+    static async createSkillsFromJsonFile(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+        try {
+            // Read the skills JSON file
+            const skillsData = fs.readFileSync('skills.json', 'utf-8');
+
+            // Parse the JSON data
+            const skills = JSON.parse(skillsData);
+
+            // Iterate over the skills and update the database
+            for (const skill of skills) {
+                // Update the skill in the database with the new URL
+                await SkillService.createSkill({ name: skill.name, imageUrl: skill.imageUrl } as SkillDocument);
+            }
+            res.send({ message: "ImageUrl, updated successfully" })
+            console.log('Skills have been updated from skills.json');
+        } catch (error) {
+            console.error('Error updating skills from skills.json:', error);
+            next(error)
+        }
+    }
     static async updateSkillsFromJsonFile(req: AuthenticatedRequest, res: Response, next: NextFunction) {
         try {
             // Read the skills JSON file

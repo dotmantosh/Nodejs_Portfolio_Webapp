@@ -25,7 +25,7 @@ class EducationController {
             // Assuming the authenticated user object is stored in res.locals.user
             const user = res.locals.user;
 
-            const education = await EducationService.findByCondition({ userId: user._id });
+            const education = (await EducationService.findByCondition({ userId: user._id })).sort((a, b) => a.get('createdAt').localeCompare(b.get('createdAt')));
             if (!education) {
                 return res.status(404).json({ message: "Education not found" });
             }
@@ -40,7 +40,7 @@ class EducationController {
             // Assuming the authenticated user object is stored in res.locals.user
             const user = await UserService.findByUserName(req.params.username)
 
-            const education = await EducationService.findByCondition({ userId: user._id });
+            const education = (await EducationService.findByCondition({ userId: user._id })).sort((a, b) => a.get('createdAt').localeCompare(b.get('createdAt')));
             if (!education) {
                 return res.status(404).json({ message: "Education not found" });
             }

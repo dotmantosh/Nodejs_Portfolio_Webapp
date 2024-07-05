@@ -17,7 +17,9 @@ export interface ProjectDocument extends Document {
   livePreviewLink: string;
   githubRepo: string;
   skills: Types.ObjectId[];
-  userId: { type: Schema.Types.ObjectId, ref: 'User' }
+  userId: Types.ObjectId
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 // Project Schema
@@ -34,6 +36,10 @@ const projectsSchema = new Schema<ProjectDocument>({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   // type: {type: String, enum: ["personal_project", "contract", "employee"]},
   // workExperienceId: { type: Schema.Types.ObjectId, ref: 'WorkExperience' }
+}, {
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 });
 
 projectsSchema.plugin(mongoosePaginate)
@@ -46,8 +52,8 @@ projectsSchema.plugin(mongoosePaginate)
 
 projectsSchema.virtual('populatedSkills', {
   ref: 'Skill', // Reference to Skill model
-  localField: '_id', // Field in the project schema
-  foreignField: 'projectId', // Field in the Skill schema
+  localField: 'skills', // Field in the project schema
+  foreignField: '_id', // Field in the Skill schema
   justOne: false // Set to false if the 'skills' field is an array
 });
 

@@ -18,6 +18,6 @@ const socialMediaSchema = new Schema<SocialMediaDocument>({
   twitter: String,
   instagram: String,
   userId: { type: Schema.Types.ObjectId, ref: 'User' }
-});
+}, { timestamps: true });
 
 export const SocialMediaSchema = model<SocialMediaDocument>('SocialMedia', socialMediaSchema);
